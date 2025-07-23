@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TeraBox Online Video Player + Downloader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #00bcd4;
+    }
+    input[type="text"] {
+      width: 90%;
+      max-width: 500px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    video {
+      margin-top: 2rem;
+      width: 90%;
+      max-width: 800px;
+      border: 2px solid #00bcd4;
+      border-radius: 10px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📺 TeraBox Online Player + Downloader</h1>
+  <p>Paste your TeraBox video direct URL below</p>
+  
+  <input type="text" id="videoURL" placeholder="Enter TeraBox direct video link (e.g., https://.../video.mp4)" />
+  <button onclick="loadVideo()">▶ Watch Video</button>
+
+  <video id="videoPlayer" controls class="hidden"></video>
+  <a id="downloadLink" class="hidden" download>⬇ Download Video</a>
+
+  <script>
+    function loadVideo() {
+      const url = document.getElementById('videoURL').value;
+      const player = document.getElementById('videoPlayer');
+      const download = document.getElementById('downloadLink');
+
+      if (!url.endsWith('.mp4') && !url.includes('video')) {
+        alert("Invalid video URL or unsupported format.");
+        return;
+      }
+
+      player.src = url;
+      player.classList.remove("hidden");
+
+      download.href = url;
+      download.textContent = "⬇ Download Video";
+      download.classList.remove("hidden");
+      download.style.marginTop = "1rem";
+    }
+  </script>
+
+</body>
+</html>
